@@ -12,7 +12,7 @@ Location: SF
 <!-- framing the "why" in big-picture/real world examples -->
 *This workshop is important because:*
 
-Angular is built for Single Page Applications (SPAs). An SPA uses one main HTML page and dynamically updates its content without reloading the page and without the time required to request a whole new HTML file from the server.
+Angular is built for Single Page Applications (SPAs). A SPA uses one main HTML page and dynamically updates its content, without reloading the page and without the time required to request a whole new HTML file from the server.
 
 A Single Page App needs a way of responding to user navigation. In a client-side framework like Angular, routing between views is not managed by the server, but by the client itself. Angular associates the path of your URL with a controller and template.
 
@@ -38,10 +38,10 @@ Our Express server will handle database interactions for our own API. Angular ca
 
 ### Single Page Application Example
 
-Imagine that you're a goat-herder.  You have an app to keep track of your :goat:s.  Such an app might have
+Imagine that you're a goat herder.  You have an app to keep track of your goats (:goat::goat::goat:).  Such an app might have:
 
-* An **index** page that displays the list of goats.    
-* A **show** page that displays details about a specific goat.
+* an **index** page that displays the list of goats.    
+* a **show** page that displays details about a specific goat.
 
 Maybe it looks a little like this:
 
@@ -49,7 +49,7 @@ Maybe it looks a little like this:
 
 That seems alright, we can track each goat and we can click it to see more info about the goat.
 
-#### Review
+### Check for Understanding: Review
 
 1. How would you serve the HTML for this site in Express?
 
@@ -72,7 +72,7 @@ That seems alright, we can track each goat and we can click it to see more info 
 
 
 
-#### With Client-side Routing
+### With Client-side Routing
 
 * What if your goat tracker could look like a multi-page app without rendering an entirely new page every time?
 * What if each view in your app had a unique browser URL depending on what the user was looking at?
@@ -83,9 +83,9 @@ That seems alright, we can track each goat and we can click it to see more info 
 
 Take a look at the URLs in the goat app above.  Notice how they indicate where we're at?  We're going to use a client-side router to add this feature today.  
 
-Client-side routing:
+**Client-side routing:**
   - ties the URL in the browser to the **state** of the current page.  If a user comes back to the same URL, they get to see the same content on the page.
-  - lets us have front-end **views** that are made up of **partials** inside of **layouts**.
+  - lets us have modular front-end **views** that are made up of **partials** inside of **layouts**.
 
 
 ### View Partials & Layouts
@@ -97,18 +97,18 @@ Most apps have a certain amount of content that appears on every page.  It might
 * a sidebar
 * a footer
 
-![http://www.funnyant.com/angularjs-ui-router/](http://www.funnyant.com/wp-content/uploads/2014/12/multiple-views-sketch-1024x768.jpg)  - [image credit](http://www.funnyant.com/wp-content/uploads/2014/12/multiple-views-sketch-1024x768.jpg)
+<img src="http://www.funnyant.com/wp-content/uploads/2014/12/multiple-views-sketch-1024x768.jpg" width="70%" alt="site wireframe with header, footer, content, aside"> 
+
+> [*image credit*](http://www.funnyant.com/wp-content/uploads/2014/12/multiple-views-sketch-1024x768.jpg)
 
 
 Using a **partial view template**, we can keep the content that *changes* in each page separate from the static content.
 
 The content that stays the same will live in our **layout**.  In other words, maybe our *sidebar*, *footer*, and *header* all stay the same.  We keep those in the layout.  The *content* that we change, depending on the URL, goes into a **partial** or **view template**.  
 
-##### back to goats...
-
 ![view and layout](views_layouts_malcolm.png)
 
-In our goat app above, we have a **"Goat Tracker"** title on each page.  That can be in our main layout.  Then we just apply a different view when viewing the list of goats or a goat *show* page.  The goat **index** template or **show** template is added into the layout.
+In our goat app above, we have a **"Goat Tracker"** title on each page.  That can be in our main layout.  Then we just apply a different partial when viewing the *index* of goats or a goat *show* page.
 
 > Note: Some client-side routers allow you to have multiple views per layout. (`ui-router`, `Component Router`)
 > Others do not (`ngRoute`)
