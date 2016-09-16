@@ -309,6 +309,16 @@ What if you want to link to another view from one of your partials?  Maybe you'd
 
 * What is a benefit of client-side routing with `ngRoute`?  What is a benefit of server-side HTML endpoint routing with Express?
 
-### More resources
 
-* [SO: difference between ngRoute and ui-router](http://stackoverflow.com/questions/21023763/angularjs-difference-between-angular-route-and-angular-ui-router)
+### Documentation Links
+
+* Built-in Directives
+   - [`ngRepeat`](https://docs.angularjs.org/api/ng/directive/ngRepeat)
+      + [`filter`](https://docs.angularjs.org/api/ng/filter/filter)
+   - [`ngHref`](https://docs.angularjs.org/api/ng/directive/ngHref)
+   - [`ngStyle`](https://docs.angularjs.org/api/ng/directive/ngStyle)
+* [`ngRoute` Module](https://docs.angularjs.org/api/ngRoute)
+   - [`ngView` directive](https://docs.angularjs.org/api/ngRoute/directive/ngView)
+   - [`$routeProvider`](https://docs.angularjs.org/api/ngRoute/provider/$routeProvider)
+   - [`$locationProvider`](https://docs.angularjs.org/api/ng/provider/$locationProvider)
+   - [`$routeParams`](https://docs.angularjs.org/api/ngRoute/service/$routeParams)
