@@ -208,12 +208,12 @@ You're going to turn your `index.html` file into a "layout template." Depending 
   function config(   $routeProvider,   $locationProvider   ) {
     $routeProvider
       .when('/', {
-        templateUrl: '/templates/home.html',
+        templateUrl: '/templates/home',
         controller: 'HomeController',
         controllerAs: 'homeCtrl'        
       })
       .when('/about', {
-        templateUrl: '/templates/about.html',
+        templateUrl: '/templates/about',
         controller: 'AboutController',
         controllerAs: 'aboutCtrl'
       })
@@ -243,8 +243,9 @@ Each route that you just set up points to its own controller, which contains its
     .controller('AboutController', AboutController);
 
 
-  config.$inject = ['$routeProvider'];
-  function config(   $routeProvider   ) {
+
+  config.$inject = ['$routeProvider', `$locationProvider`];
+  function config(   $routeProvider,   $locationProvider  ) {
     ...
   }
 
@@ -276,7 +277,7 @@ config.$inject = ['$routeProvider', `$locationProvider`];
 function config(   $routeProvider,   $locationProvider  ) {
   $routeProvider
     .when('/goats/:goatId', {
-      templateUrl: 'templates/goats/show.html',
+      templateUrl: '/templates/goats/show',
       controller: 'GoatsShowController',
       controllerAs: 'goatsShowCtrl'
     });
