@@ -12,11 +12,11 @@ Location: SF
 <!-- framing the "why" in big-picture/real world examples -->
 *This workshop is important because:*
 
-Angular is built for Single Page Applications (SPAs). A SPA uses one main HTML page and dynamically updates its content, without reloading the page and without the time required to request a whole new HTML file from the server.
+Angular is built for Single Page Applications (SPAs). A SPA uses one main HTML page and dynamically updates its content, without reloading the page.
 
-A Single Page App needs a way of responding to user navigation. In a client-side framework like Angular, routing between views is not managed by the server, but by the client itself. Angular associates the path of your URL with a controller and template.
+A Single Page App needs to handle user _navigation_ between "pages" in the wireframe without loading new HTML pages. In a client-side framework like Angular, routing between views is not managed by the server but by the client itself. Angular associates the path of your URL with a controller and template.
 
-Our Express server will handle database interactions for our own API. Angular can handle routing and requests to most external APIs.
+In a MEAN stack app, the Express server will handle database interactions for our own API. Angular can handle routing and requests to most external APIs.
 
 
 ### What are the objectives?
@@ -24,16 +24,16 @@ Our Express server will handle database interactions for our own API. Angular ca
 *After this workshop, developers will be able to:*
 
 - Compare and contrast client-side and server-side routing.
- - Add a module to an Angular project.
- - Implement client-side routing with the `ngRoute` module.
- - Display view partials (template files) with the `ng-view` directive.
+- Add a module to an Angular project.
+- Implement client-side routing with the `ngRoute` module.
+- Display views (partial template files) with the `ng-view` directive.
 
 ### Where should we be now?
 <!-- call out the skills that are prerequisites -->
 *Before this workshop, developers should already be able to:*
 
-- describe what a route is in an Express server.
-- set up Express server routes to serve HTML files.
+- explain how users navigate beteween different HTML pages. 
+- set up HTML routes in an Express server.
 - explain parameterized urls. 
 
 ### Single Page Application Example
@@ -49,7 +49,7 @@ Maybe it looks a little like this:
 
 That seems alright, we can track each goat and we can click it to see more info about the goat.
 
-### Check for Understanding: Review
+### Check for Understanding
 
 1. How would you serve the HTML for this site in Express?
 
@@ -74,17 +74,18 @@ That seems alright, we can track each goat and we can click it to see more info 
 
 ### With Client-side Routing
 
-* What if your goat tracker could look like a multi-page app without rendering an entirely new page every time?
+* What if your goat tracker could look like a multi-page app without page reloads?
 * What if each view in your app had a unique browser URL depending on what the user was looking at?
 * What if the state of the page was reflected in the URL?
-* What if the user could use the back and forward buttons in the browser to navigate your site?
+* What if the user could use the back and forward buttons in the browser to smoothly navigate your site?
 
 **Now you can!**
 
-Take a look at the URLs in the goat app above.  Notice how they indicate where we're at?  We're going to use a client-side router to add this feature today.  
+Notice how the urls in the wireframes above indicate where we're at?  And how some of the page content stays the same? 
 
 **Client-side routing:**
   - ties the URL in the browser to the **state** of the current page.  If a user comes back to the same URL, they get to see the same content on the page.
+  - ensures that familiar browser navigation works.
   - lets us have modular front-end **views** that are made up of **partials** inside of **layouts**.
 
 
@@ -97,21 +98,15 @@ Most apps have a certain amount of content that appears on every page.  It might
 * a sidebar
 * a footer
 
-<img src="http://www.funnyant.com/wp-content/uploads/2014/12/multiple-views-sketch-1024x768.jpg" width="70%" alt="site wireframe with header, footer, content, aside"> 
-
-> [*image credit*](http://www.funnyant.com/wp-content/uploads/2014/12/multiple-views-sketch-1024x768.jpg)
-
-
 Using a **partial view template**, we can keep the content that *changes* in each page separate from the static content.
 
-The content that stays the same will live in our **layout**.  In other words, maybe our *sidebar*, *footer*, and *header* all stay the same.  We keep those in the layout.  The *content* that we change, depending on the URL, goes into a **partial** or **view template**.  
+The content that stays the same will live in our **layout**.  In other words, maybe our *sidebar*, *footer*, and *header* all stay the same.  We keep those in the layout.  Any *content* that changes when the URL changes goes into a **partial** or **view template**.  
 
 ![view and layout](views_layouts_malcolm.png)
 
 In our goat app above, we have a **"Goat Tracker"** title on each page.  That can be in our main layout.  Then we just apply a different partial when viewing the *index* of goats or a goat *show* page.
 
-> Note: Some client-side routers allow you to have multiple views per layout. (`ui-router`, `Component Router`)
-> Others do not (`ngRoute`)
+> Note: Some client-side routers allow you to have multiple views per layout. (`ui-router`, `Component Router`). Others do not (`ngRoute`).
 
 
 ### `ngRoute` background
@@ -125,6 +120,18 @@ The Angular community decided to decouple the core Angular features from this ea
 They extracted the initial Angular routing code into its own separate module called `ngRoute`.  
 
 Angular's built-in `ngRoute` will most likely have all the routing features you need for your apps as you're first learning Angular. As your Angular apps become more robust, you might find yourself moving toward other solutions like the third-party `ui-router` module, which supports nested views, multiple named views, and "states".
+
+### `ngRoute` Module
+
+Modules group together various components. Here are `ngRoute`'s directives, provider, and services:
+
+`ngView` (`ng-view`) directive: includes the rendered template of the current route into the main layout (index.html) file. Every time the current route changes, the included view changes with it according to the configuration of the `$route` service.
+
+`$routeProvider` provider: used for configuring routes.
+
+`$route` (service): used for deep-linking URLs to controllers and views (HTML partials). It watches `$location.url()` and tries to map the path to an existing route definition. The main behind-the-scenes workhorse of `ngRoute`.
+
+`$routeParams` (service): allows you to retrieve the current set of route parameters.
 
 ### `ngRoute` Setup
 
@@ -320,5 +327,5 @@ What if you want to link to another view from one of your partials?  Maybe you'd
 * [`ngRoute` Module](https://docs.angularjs.org/api/ngRoute)
    - [`ngView` directive](https://docs.angularjs.org/api/ngRoute/directive/ngView)
    - [`$routeProvider`](https://docs.angularjs.org/api/ngRoute/provider/$routeProvider)
-   - [`$locationProvider`](https://docs.angularjs.org/api/ng/provider/$locationProvider)
    - [`$routeParams`](https://docs.angularjs.org/api/ngRoute/service/$routeParams)
+* [`$locationProvider`](https://docs.angularjs.org/api/ng/provider/$locationProvider)
