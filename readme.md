@@ -64,6 +64,8 @@ That seems alright, we can track each goat and we can click it to see more info 
   > Note: This approach results in every page having its own URL, which allows deep linking. Also, since HTML files are sent to the client with much of their content complete, it's feasible for search engines to crawl their content.  On the other hand, there are many page reloads as the user navigates the site.
   </details>
 <br>
+
+
 2. How would you build this site's front end if you were only serving *one* HTML file? (That is, how would you handle changing the appearance of the page when the user clicked on an individual goat?)
 
   <details><summary>click for idea</summary>
@@ -212,12 +214,16 @@ You're going to turn your `index.html` file into a "layout template." Depending 
   function config(   $routeProvider,   $locationProvider   ) {
     $routeProvider
       .when('/', {
-        templateUrl: '/templates/home',
+        templateUrl: '/templates/home',       
         controller: 'HomeController',
         controllerAs: 'homeCtrl'        
       })
       .when('/about', {
-        templateUrl: '/templates/about',
+	// this templateUrl format will get the template with a GET request to the URL on our server
+        templateUrl: '/templates/about',	
+	// an alternate version would get the template from another html file without using server routes:
+		// remember to use the correct templateUrl!
+		// tempalteUrl: '/templates/about.html'
         controller: 'AboutController',
         controllerAs: 'aboutCtrl'
       })
@@ -315,7 +321,7 @@ What if you want to link to another view from one of your partials?  Maybe you'd
 	</div>
 	```
 
-###Closing Thoughts
+### Closing Thoughts
 
 * How is client-side routing different from server-side routing (for HTML endpoints)?
 
