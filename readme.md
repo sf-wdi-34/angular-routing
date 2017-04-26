@@ -32,9 +32,9 @@ In a MEAN stack app, the Express server will handle database interactions for ou
 <!-- call out the skills that are prerequisites -->
 *Before this workshop, developers should already be able to:*
 
-- explain how users navigate beteween different HTML pages. 
-- set up HTML routes in an Express server.
-- explain parameterized urls. 
+- Explain how users navigate beteween different HTML pages. 
+- Set up HTML routes in an Express server.
+- Give examples of parameterized urls and pick out the specific parameters. 
 
 ### Single Page Application Example
 
@@ -54,23 +54,27 @@ That seems alright, we can track each goat and we can click it to see more info 
 1. How would you serve the HTML for this site in Express?
 
   <details><summary>click for idea</summary>
-    Since there are two different views with different HTML structures, the most straightforward way is to create two HTML files and two routes:
-    -  a `GET /` route to send the home page's HTML file, and
-    - a `GET /goats/:goatId` route to send an HTML file that could be filled in with Handlebars for each individual goat.
+    Since there are two different views with very different HTML structures, the most straightforward way is to create two HTML files and two routes:
+    
+    - GET /
+    - GET /goats/:goatId  
+
+  The first one would send the home page's HTML file, and the second would send an HTML file that could be filled in with Handlebars for each individual goat.
+
+  > Note: This approach results in every page having its own URL, which allows deep linking. Also, since HTML files are sent to the client with much of their content complete, it's feasible for search engines to crawl their content.  On the other hand, there are many page reloads as the user navigates the site.
   </details>
-
-  > Note: This approach results in every page having its own URL, but their are many page reloads as the user navigates the site. Since HTML files are sent over mostly complete, it's easy for search engines to crawl their content.
-
-1. How would you build this site's front end if you were only serving *one* HTML file? (That is, how would you handle changing the appearance of the page when the user clicked on an individual goat?)
+<br>
+2. How would you build this site's front end if you were only serving *one* HTML file? (That is, how would you handle changing the appearance of the page when the user clicked on an individual goat?)
 
   <details><summary>click for idea</summary>
     Using jQuery, the "index" sections of the HTML page could be hidden. The single goat's information could be templated and shown on the page.
-
-  </details>
-
+    
+    
   > Note: this approach removes page reloads, but the simplest implementation results in all pages having the same URL. Since HTML files are sent over in chunks, the time to retrieve any one view is shorter.
 
 
+  </details>
+<br>
 
 ### With Client-side Routing
 
