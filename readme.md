@@ -108,7 +108,7 @@ Using a **partial view template**, we can keep the content that *changes* in eac
 
 The content that stays the same will live in our **layout**.  In other words, maybe our *sidebar*, *footer*, and *header* all stay the same.  We keep those in the layout.  Any *content* that changes when the URL changes goes into a **partial** or **view template**.  
 
-![view and layout](views_layouts_malcolm.png)
+![views_layouts_malcolm](https://cloud.githubusercontent.com/assets/3254910/25443943/4b06e048-2a5e-11e7-9eb9-5823addb4106.png)
 
 In our goat app above, we have a **"Goat Tracker"** title on each page.  That can be in our main layout.  Then we just apply a different partial when viewing the *index* of goats or a goat *show* page.
 
